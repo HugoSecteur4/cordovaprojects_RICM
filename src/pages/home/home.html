@@ -6,7 +6,7 @@
   </ion-navbar>
 
 <ion-toolbar no-border-top>
-  <ion-searchbar placeholder="Recherche" [(ngModel)]="query" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Recherche" [(ngModel)]="query" (ionInput)="getItems()"></ion-searchbar>
 </ion-toolbar>
 </ion-header>
 
@@ -16,17 +16,17 @@
 
 
 <ion-list>
-  <ion-item *ngIf="!liste.length">
+  <ion-item *ngIf="!(liste | async)?.length">
     Aucun résultat
   </ion-item>
   <!-- <ion-item *ngIf="!this.query; else elseBlock"> No result </ion-item>
   <ng-template #elseBlock> -->
-  <ion-item ion-item *ngFor="let item of liste">
+  <ion-item ion-item *ngFor="let item of liste | async">
     <ion-thumbnail item-start>
-      <img [src]="item.image">
+      <img [src]="'https://image.tmdb.org/t/p/w92/'+item.poster_path">
     </ion-thumbnail>
     <h2>{{item.title}}</h2>
-    <p>{{item.author}} • {{item.date}}</p>
+    <p>{{item.overview}}</p>
     <button ion-button clear item-end (click)="push(item)">View</button>
   </ion-item>
   <!-- </ng-template> -->

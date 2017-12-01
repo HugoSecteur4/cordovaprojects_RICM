@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
+import { api_key } from '../../app/tmdb';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 export interface IResultRecherche {
+  poster_path: string;
   title: string;
-  author: string;
-  date: string;
-  image: string;
+  overview: string;
 }
 
-const liste: IResultRecherche[] = [{ title: "denis", author: "denis l'auteur", date: "29 février 2018", image:"http://lorempixel.com/400/200/"},
-                                       { title: "damien", author: "damien l'auteur", date: "31 octobre 1944", image: "http://lorempixel.com/400/200/" },
-                                       { title: "dimitri", author: "dimitri l'auteur", date: "27 septembre 2012", image: "http://lorempixel.com/400/200/" }];
+
+// const liste: IResultRecherche[] = [{ title: "denis", overview: "denis l'auteur", poster_path:"http://lorempixel.com/400/200/"},
+//                                        { title: "damien", overview: "damien l'auteur", poster_path: "http://lorempixel.com/400/200/" },
+//                                        { title: "dimitri", overview: "dimitri l'auteur", poster_path: "http://lorempixel.com/400/200/" }];
 
 @Component({
   selector: 'page-home',
@@ -19,19 +23,34 @@ const liste: IResultRecherche[] = [{ title: "denis", author: "denis l'auteur", d
 })
 
 export class HomePage {
-  constructor(public navCtrl: NavController) { }
 
-  liste: IResultRecherche[] = liste;
+  constructor(private navCtrl: NavController, private http: HttpClient) {
+    this.getItems();
+   }
+
+  liste: Observable<IResultRecherche[]>;
   query: string = "";
 
-  getItems(ev: any) {
+  getItems() {
 
-    console.log(this.query);
+    if (this.query) {
+      this.liste = this.fetchResult();
+      //this.liste.forEach(poster_path => "https://image.tmdb.org/t/p/w500/"+poster_path);
+    } else {
+      this.liste = Observable.of([]);
+    }
   }
 
 
   push(item: IResultRecherche):void {
     this.navCtrl.push(DetailsPage, {info:item});
+  }
+
+  fetchResult(): Observable<IResultRecherche[]> {
+
+    return this.http.get<IResultRecherche[]>("https://api.themoviedb.org/3/search/movie", {
+      params: new HttpParams().set("api_key",api_key).set("query",this.query)
+    }).pluck("results");
   }
 
 

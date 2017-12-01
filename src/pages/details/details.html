@@ -15,12 +15,11 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-thumbnail>
-      <img [src]="info.image">
-    </ion-thumbnail>
-    <h2> {{info.author}} </h2>
-    <p> {{info.date}}</p>
-  </ion-item>
+    <img [src]="'https://image.tmdb.org/t/p/w500/'+info.poster_path">
+
+</ion-item>
+    <p> {{info.overview}}</p>
+
 <!-- <ion-item> -->
   <!-- <ion-thumbnail item-start>
     <img [src]="info.image">
