@@ -49,7 +49,7 @@ export class HomePage {
   fetchResult(): Observable<IResultRecherche[]> {
 
     return this.http.get<IResultRecherche[]>("https://api.themoviedb.org/3/search/movie", {
-      params: new HttpParams().set("api_key",api_key).set("query",this.query)
+      params: new HttpParams().set("api_key",api_key).set("query",this.query).set("language", "fr")
     }).pluck("results");
   }
 
