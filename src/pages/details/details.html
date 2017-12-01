@@ -16,9 +16,10 @@
 <ion-content padding>
   <ion-item>
     <img [src]="'https://image.tmdb.org/t/p/w500/'+info.poster_path">
-
+    <p> {{info.release_date | date}}</p>
 </ion-item>
-    <p> {{info.overview}}</p>
+<p> {{info.overview}}</p>
+
 
 <!-- <ion-item> -->
   <!-- <ion-thumbnail item-start>
