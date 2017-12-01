@@ -19,14 +19,16 @@
   <ion-item *ngIf="!liste.length">
     Aucun résultat
   </ion-item>
-
+  <!-- <ion-item *ngIf="!this.query; else elseBlock"> No result </ion-item>
+  <ng-template #elseBlock> -->
   <ion-item ion-item *ngFor="let item of liste">
     <ion-thumbnail item-start>
       <img [src]="item.image">
     </ion-thumbnail>
     <h2>{{item.title}}</h2>
     <p>{{item.author}} • {{item.date}}</p>
-    <button ion-button clear item-end>View</button>
+    <button ion-button clear item-end (click)="push(item)">View</button>
   </ion-item>
+  <!-- </ng-template> -->
 </ion-list>
 </ion-content>

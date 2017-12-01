@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DetailsPage } from '../details/details';
 
-interface IResultRecherche {
+export interface IResultRecherche {
   title: string;
   author: string;
   date: string;
@@ -18,11 +19,19 @@ const liste: IResultRecherche[] = [{ title: "denis", author: "denis l'auteur", d
 })
 
 export class HomePage {
+  constructor(public navCtrl: NavController) { }
+
   liste: IResultRecherche[] = liste;
   query: string = "";
 
   getItems(ev: any) {
+
     console.log(this.query);
+  }
+
+
+  push(item: IResultRecherche):void {
+    this.navCtrl.push(DetailsPage, {info:item});
   }
 
 

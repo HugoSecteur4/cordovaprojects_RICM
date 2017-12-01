@@ -7,12 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>details</ion-title>
+    <ion-title>{{info.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-thumbnail>
+      <img [src]="info.image">
+    </ion-thumbnail>
+    <h2> {{info.author}} </h2>
+    <p> {{info.date}}</p>
+  </ion-item>
+<!-- <ion-item> -->
+  <!-- <ion-thumbnail item-start>
+    <img [src]="info.image">
+  </ion-thumbnail> -->
+  <!-- <img [src]="info.image"> -->
+  <!-- <h2>{{info.author}}</h2> -->
+<!-- </ion-item> -->
 
 </ion-content>

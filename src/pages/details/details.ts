@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { IResultRecherche } from '../home/home';
 
 /**
  * Generated class for the DetailsPage page.
@@ -13,8 +14,9 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'details.html',
 })
 export class DetailsPage {
-
+  info: IResultRecherche;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.info = navParams.get('info');
   }
 
   ionViewDidLoad() {
