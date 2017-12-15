@@ -21,14 +21,14 @@
   </ion-item>
   <!-- <ion-item *ngIf="!this.query; else elseBlock"> No result </ion-item>
   <ng-template #elseBlock> -->
-  <ion-item ion-item *ngFor="let item of liste | async">
+  <button ion-item (click)="push(item)" *ngFor="let item of liste | async">
     <ion-thumbnail item-start>
       <img [src]="'https://image.tmdb.org/t/p/w92/'+item.poster_path">
     </ion-thumbnail>
     <h2>{{item.title}}</h2>
     <p>{{item.overview}}</p>
-    <button ion-button clear item-end (click)="push(item)">View</button>
-  </ion-item>
+    <!-- <button ion-button clear item-end (click)="push(item)">View</button> -->
+  </button>
   <!-- </ng-template> -->
 </ion-list>
 </ion-content>
